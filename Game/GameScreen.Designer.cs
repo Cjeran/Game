@@ -1,13 +1,13 @@
 ﻿namespace Game
 {
-    partial class Form1
+    partial class GameScreen
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,10 +20,10 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
@@ -34,15 +34,16 @@
             // 
             // gameTime
             // 
-            this.gameTime.Enabled = true;
+            this.gameTime.Tick += new System.EventHandler(this.gameTime_Tick);
             // 
-            // Form1
+            // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 500);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Name = "GameScreen";
+            this.Size = new System.Drawing.Size(800, 500);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
             this.ResumeLayout(false);
 
         }
@@ -52,4 +53,3 @@
         private System.Windows.Forms.Timer gameTime;
     }
 }
-
