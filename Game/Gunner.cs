@@ -9,8 +9,8 @@ namespace Game
 {
     class Gunner
     {
-        int x, y, size, speed;
-        Color colour;
+        public int x, y, size, speed;
+        public Color colour;
 
         public Gunner(int _x, int _y, int _size, int _speed, Color _colour)
         {
@@ -24,7 +24,7 @@ namespace Game
         public void Move(string direction)
         {
             //Depending on input, moves gunner in given direction
-            if (direction == "up"){y -= speed;}
+            if (direction == "up"){y -= speed;} 
             else if (direction == "down"){y += speed;}
             else if (direction == "left"){x -= speed;}
             else if (direction == "right"){x += speed;}

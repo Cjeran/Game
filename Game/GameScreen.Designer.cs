@@ -34,6 +34,7 @@
             // 
             // gameTime
             // 
+            this.gameTime.Enabled = true;
             this.gameTime.Tick += new System.EventHandler(this.gameTime_Tick);
             // 
             // GameScreen
@@ -44,6 +45,9 @@
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(800, 500);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GameScreen_Paint);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyDown_1);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.GameScreen_KeyUp_1);
+            this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.GameScreen_PreviewKeyDown);
             this.ResumeLayout(false);
 
         }

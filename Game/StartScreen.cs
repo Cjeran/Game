@@ -24,6 +24,7 @@ namespace Game
 
             GameScreen gs = new GameScreen();
             f.Controls.Add(gs);
+            this.Dispose();
         }
     }
 }
