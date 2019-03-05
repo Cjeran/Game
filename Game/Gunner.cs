@@ -25,9 +25,9 @@ namespace Game
         {
             //Depending on input, moves gunner in given direction
             if (direction == "up"){y -= speed;} 
-            else if (direction == "down"){y += speed;}
-            else if (direction == "left"){x -= speed;}
-            else if (direction == "right"){x += speed;}
+            if (direction == "down"){y += speed;}
+            if (direction == "left"){x -= speed;}
+            if (direction == "right"){x += speed;}
         }
     }
 }

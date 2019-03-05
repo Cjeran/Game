@@ -35,6 +35,7 @@
             // gameTime
             // 
             this.gameTime.Enabled = true;
+            this.gameTime.Interval = 16;
             // 
             // Form1
             // 
