@@ -166,10 +166,8 @@ namespace Game
                 }
             }
 
-            if (spaceKeyDown == false && bKeyDown == false && nKeyDown == false && mKeyDown == false)
-            {
-                loaded = true;
-            }
+            //Makes it so you cannot hold the firing buttons down
+            if (spaceKeyDown == false && bKeyDown == false && nKeyDown == false && mKeyDown == false){loaded = true;}
            
             Refresh();
         }
