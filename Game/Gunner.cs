@@ -9,8 +9,10 @@ namespace Game
 {
     class Gunner
     {
+        public Random randGen = new Random();
         public int x, y, size, speed;
         public Color colour;
+        public Rectangle r;
 
         public Gunner(int _x, int _y, int _size, int _speed, Color _colour)
         {
@@ -19,6 +21,43 @@ namespace Game
             size = _size;
             speed = _speed;
             colour = _colour;
+            r = new Rectangle(x, y, size, size);
+        }
+
+        public Gunner(int initial)
+        {
+            if (initial == 1)
+            {
+                x = randGen.Next(1, 751);
+                y = -50;
+                size = 50;
+                speed = 10;
+                colour = Color.Red;
+            }
+            else if (initial == 2)
+            {
+                x = 800;
+                y = randGen.Next(1, 451);
+                size = 50;
+                speed = 10;
+                colour = Color.Red;
+            }
+            else if (initial == 3)
+            {
+                x = randGen.Next(1, 751);
+                y = 500;
+                size = 50;
+                speed = 10;
+                colour = Color.Red;
+            }
+            else if (initial == 4)
+            {
+                x = -50;
+                y = randGen.Next(1, 451);
+                size = 50;
+                speed = 10;
+                colour = Color.Red;
+            }
         }
 
         public void Move(string direction)
@@ -28,6 +67,19 @@ namespace Game
             if (direction == "down"){y += speed;}
             if (direction == "left"){x -= speed;}
             if (direction == "right"){x += speed;}
+        }
+
+        public void Track(Gunner g)
+        {
+            if (g.x > x) { x += speed; }
+            if (g.x < x) { x -= speed; }
+            if (g.y > y) { y += speed; }
+            if (g.y < y) { y -= speed; }
+        }
+
+        public Boolean Shot(Projectile p)
+        {
+            return r.IntersectsWith(p.r);
         }
     }
 }

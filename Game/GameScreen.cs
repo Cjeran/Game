@@ -12,12 +12,16 @@ namespace Game
 {
     public partial class GameScreen : UserControl
     {
-        int shots, score;
+        
+        new Random randGen = new Random();
+        int shots, score, timer;
         Gunner g;
         Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 24);
         List<Projectile> bullets = new List<Projectile>();
+        List<Projectile> bolts = new List<Projectile>();
+        List<Gunner> enemies = new List<Gunner>();
 
         public GameScreen()
         {
@@ -112,12 +116,18 @@ namespace Game
 
         public void OnStart()
         {
+            Gunner e = new Gunner(randGen.Next(1, 5));
+            enemies.Add(e);
             g = new Gunner(this.Width / 2 - 10, this.Height / 2 - 10, 20, 7, Color.LightCyan);
+            timer = 0;
             gameTime.Start();
         }
        
         private void gameTime_Tick(object sender, EventArgs e)
         {
+            //Update Timer
+            timer++;
+
             //Movement Detection
             if (leftKeyDown == true && g.x > 0){ g.Move("left"); }
             if (rightKeyDown == true && g.x < this.Width - g.size) { g.Move("right"); }
@@ -166,6 +176,19 @@ namespace Game
                 }
             }
 
+            //Move enemies
+            foreach (Gunner x in enemies) { x.Track(g); }
+
+            //Add enemies
+            if (timer % 10 == 0)
+            {
+                Gunner x = new Gunner(randGen.Next(1, 5));
+                enemies.Add(x);
+            }
+
+            //Remove Shot Enemies
+            
+
             //Makes it so you cannot hold the firing buttons down
             if (spaceKeyDown == false && bKeyDown == false && nKeyDown == false && mKeyDown == false){loaded = true;}
            
@@ -175,6 +198,7 @@ namespace Game
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
             foreach (Projectile p in bullets) { e.Graphics.FillRectangle(new SolidBrush(p.colour), p.x, p.y, p.width, p.height); }
+            foreach (Gunner x in enemies) { e.Graphics.FillEllipse(new SolidBrush(x.colour), x.x, x.y, x.size, x.size); }
             e.Graphics.FillRectangle(new SolidBrush(g.colour), g.x, g.y, g.size, g.size);
             e.Graphics.DrawString(shots + "", labelFont, new SolidBrush(Color.Black), this.Width - 100, 0);
             e.Graphics.DrawString(score + "", labelFont, new SolidBrush(Color.Black), this.Width - 100, 25);

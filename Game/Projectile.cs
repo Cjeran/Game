@@ -12,6 +12,7 @@ namespace Game
         public int x, y, width, height, speed, initialY, initialX;
         public string direction;
         public Color colour;
+        public Rectangle r;
 
         public Projectile(int _x, int _y, int _width, int _height, int _speed, Color _colour, string _direction)
         {
@@ -24,6 +25,7 @@ namespace Game
             initialY = _y;
             initialX = _x;
             direction = _direction;
+            r = new Rectangle(x, y, width, height);
         }
 
         public void Move()
