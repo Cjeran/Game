@@ -79,7 +79,10 @@ namespace Game
 
         public Boolean Shot(Projectile p)
         {
-            return r.IntersectsWith(p.r);
+            Rectangle projectileRect = new Rectangle(p.x, p.y, p.width, p.height);
+            Rectangle enemyRect = new Rectangle(x, y, size, size);
+
+            return enemyRect.IntersectsWith(projectileRect);
         }
     }
 }

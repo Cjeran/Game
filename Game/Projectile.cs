@@ -9,6 +9,7 @@ namespace Game
 {
     class Projectile
     {
+        public Random randGen = new Random();
         public int x, y, width, height, speed, initialY, initialX;
         public string direction;
         public Color colour;
@@ -26,6 +27,27 @@ namespace Game
             initialX = _x;
             direction = _direction;
             r = new Rectangle(x, y, width, height);
+        }
+
+        public Projectile(int initial)
+        {
+            if (initial == 1)
+            {
+                x = randGen.Next(1, 797);
+               // y = 
+            }
+            else if (initial == 2)
+            {
+
+            }
+            else if (initial == 3)
+            {
+
+            }
+            else if (initial == 4)
+            {
+
+            }
         }
 
         public void Move()
@@ -46,6 +68,8 @@ namespace Game
             {
                 x += speed;
             }
+
+            r = new Rectangle(x, y, width, height);
         }
     }
 }
