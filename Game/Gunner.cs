@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Game
 {
     class Gunner
     {
+        public Boolean hit = false;
         public Random randGen = new Random();
         public int x, y, size, speed;
         public Color colour;
@@ -83,6 +80,17 @@ namespace Game
             Rectangle enemyRect = new Rectangle(x, y, size, size);
 
             return enemyRect.IntersectsWith(projectileRect);
+        }
+
+        public Boolean Death(Gunner g)
+        {
+            Rectangle rect = new Rectangle(x, y, size, size);
+            Rectangle gRect = new Rectangle(g.x, g.y, g.size, g.size);
+            if (rect.IntersectsWith(gRect))
+            {
+                hit = true;
+            }
+            return hit;
         }
     }
 }

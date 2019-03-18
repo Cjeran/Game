@@ -14,9 +14,9 @@ namespace Game
     {
         
         new Random randGen = new Random();
-        int shots, score, timer, difficulty;
+        int shots, score, timer, difficulty, kills;
         Gunner g;
-        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown;
+        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, gameOver;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 16);
         List<Projectile> bullets = new List<Projectile>();
@@ -26,8 +26,9 @@ namespace Game
         public GameScreen()
         {
             InitializeComponent();
-            OnStart();
             DoubleBuffered = true;
+            gameOver = false;
+            OnStart();
         }
 
         private void GameScreen_KeyDown_1(object sender, KeyEventArgs e)
@@ -131,7 +132,7 @@ namespace Game
             //Update Timer
             timer++;
 
-            //Increase Difficulty if time
+            //Increase Difficulty if its time
             if (timer % 25 == 0 && difficulty > 1)
             {
                 difficulty = difficulty - 1;
@@ -198,6 +199,35 @@ namespace Game
             //Remove Shot Enemies
             Collision();
 
+            //Game Over if hero collides with enemies
+            for (int x = 0; x < enemies.Count; x++)
+            {
+                if (g.Death(enemies[x]))
+                {
+                    gameOver = true;
+                    break;
+                }
+            }
+
+            //If gameOver is true, go to end screen.
+            if (gameOver)
+            {
+                Form1.finalKills = kills;
+                Form1.finalScore = kills * 75 + score * 5;
+                Form1.finalTime = score;
+
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                EndScreen es = new EndScreen();
+                f.Controls.Add(es);
+
+                this.Dispose();
+            }
+
+            //Add 5 to score every tick for surviving
+            score++;
+
             //Makes it so you cannot hold the firing buttons down
             if (spaceKeyDown == false && bKeyDown == false && nKeyDown == false && mKeyDown == false){loaded = true;}
            
@@ -206,40 +236,15 @@ namespace Game
 
         private void GameScreen_Paint(object sender, PaintEventArgs e)
         {
+            //create total score
+            int totalScore = kills * 75 + score * 5;
             foreach (Projectile p in bullets) { e.Graphics.FillRectangle(new SolidBrush(p.colour), p.x, p.y, p.width, p.height); }
             foreach (Gunner x in enemies) { e.Graphics.FillEllipse(new SolidBrush(x.colour), x.x, x.y, x.size, x.size); }
             e.Graphics.FillRectangle(new SolidBrush(g.colour), g.x, g.y, g.size, g.size);
             e.Graphics.DrawString("Shots: " + shots, labelFont, new SolidBrush(Color.Black), this.Width - 100, 0);
-            e.Graphics.DrawString("Score: " + score, labelFont, new SolidBrush(Color.Black), this.Width - 100, 17);
+            e.Graphics.DrawString("Score: " + totalScore, labelFont, new SolidBrush(Color.Black), this.Width - 100, 17);
         }
 
-        /*public void AmmoMonsterCollision()
-
-        {
-            //contains the index values of all ammunition values that have collided and 
-            //will thus need to be removed 
-            List<int> projectilesToRemove = new List<int>();
-
-            foreach (Projectile p in bullets)
-            {
-                if (Gunner.Shot(p))
-                {
-                    //gets the index value of the ammo that collided with hero  
-                    projectilesToRemove.Add(bullets.IndexOf(p));
-
-                    //add any other code you want to run on collision here. E.g. health loss 
-                }
-            }
-
-            //reverse list so when removing you do so from the end of the list first 
-            projectilesToRemove.Reverse();
-
-            //remove ammo from its original list based on index values 
-            foreach (int i in projectilesToRemove)
-            {
-                bullets.RemoveAt(i);
-            }
-        }*/
 
         public void Collision()
         {
@@ -251,7 +256,7 @@ namespace Game
                     {
                         bullets.Remove(bullets[p]);
                         enemies.Remove(enemies[x]);
-                        score += 100;
+                        kills += 1;
                         break;
                     }
                 }

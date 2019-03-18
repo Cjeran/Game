@@ -12,7 +12,7 @@ namespace Game
 {
     public partial class Form1 : Form
     {
-
+        public static int finalKills, finalScore, finalTime;
         public Form1()
         {
             InitializeComponent();
