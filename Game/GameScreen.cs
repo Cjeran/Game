@@ -16,7 +16,7 @@ namespace Game
         new Random randGen = new Random();
         int shots, score, timer, difficulty, kills;
         Gunner g;
-        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, gameOver;
+        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, pKeyDown, oKeyDown, gameOver, hax;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 16);
         List<Projectile> bullets = new List<Projectile>();
@@ -58,6 +58,12 @@ namespace Game
                     break;
                 case Keys.M:
                     mKeyDown = true;
+                    break;
+                case Keys.P:
+                    pKeyDown = true;
+                    break;
+                case Keys.O:
+                    oKeyDown = true;
                     break;
             }
         }
@@ -112,6 +118,12 @@ namespace Game
                 case Keys.M:
                     mKeyDown = false;
                     break;
+                case Keys.P:
+                    pKeyDown = false;
+                    break;
+                case Keys.O:
+                    oKeyDown = false;
+                    break;
             }
         }
 
@@ -122,6 +134,8 @@ namespace Game
             g = new Gunner(this.Width / 2 - 10, this.Height / 2 - 10, 20, 7, Color.LightCyan);
             Gunner x = new Gunner(0, 0, 0, 0, Color.Red);
             enemies.Add(x);
+            Projectile p = new Projectile(-10, -10, 10, 10, 0, Color.Azure, "down");
+            bolts.Add(p);
             timer = 0;
             difficulty = 25;
             gameTime.Start();
@@ -174,6 +188,7 @@ namespace Game
                 shots++;
             }
 
+            //Remove drop of bullets
             for (int i = 0; i < bullets.Count; i++)
             {
                 bullets[i].Move();
@@ -186,26 +201,52 @@ namespace Game
                 }
             }
 
+            //Remove Off Screen Bolts
+            for (int i = 0; i < bolts.Count; i++)
+            {
+                bolts[i].Move();
+                if (bolts[i].y < bolts[i].initialY - 550
+                    || bolts[i].y > bolts[i].initialY + 550
+                    || bolts[i].x > bolts[i].initialX + 850
+                    || bolts[i].x < bolts[i].initialX - 850)
+                {
+                    bolts.Remove(bolts[i]);
+                }
+            }
+
             //Move enemies
             foreach (Gunner x in enemies) { x.Track(g); }
 
             //Add enemies
-            if (timer % difficulty == 0)
+            if (timer % difficulty == 0 || timer == 0)
             {
                 Gunner x = new Gunner(randGen.Next(1, 5));
                 enemies.Add(x);
+                Projectile a = new Projectile(randGen.Next(1, 5));
+                bolts.Add(a);
+                Projectile b = new Projectile(randGen.Next(1, 5));
+                bolts.Add(b);
+                Projectile c = new Projectile(randGen.Next(1, 5));
+                bolts.Add(c);
+                Projectile d = new Projectile(randGen.Next(1, 5));
+                bolts.Add(d);
+                Projectile p = new Projectile(randGen.Next(1, 5));
+                bolts.Add(p);
             }
 
             //Remove Shot Enemies
             Collision();
 
             //Game Over if hero collides with enemies
-            for (int x = 0; x < enemies.Count; x++)
+            if (hax == false)
             {
-                if (g.Death(enemies[x]))
+                for (int x = 0; x < enemies.Count; x++)
                 {
-                    gameOver = true;
-                    break;
+                    if (g.Death(enemies[x]))
+                    {
+                        gameOver = true;
+                        break;
+                    }
                 }
             }
 
@@ -230,6 +271,9 @@ namespace Game
 
             //Makes it so you cannot hold the firing buttons down
             if (spaceKeyDown == false && bKeyDown == false && nKeyDown == false && mKeyDown == false){loaded = true;}
+
+            if (pKeyDown == true){hax = true;}
+            if (oKeyDown == true){ hax = false;}
            
             Refresh();
         }
@@ -239,6 +283,7 @@ namespace Game
             //create total score
             int totalScore = kills * 75 + score * 5;
             foreach (Projectile p in bullets) { e.Graphics.FillRectangle(new SolidBrush(p.colour), p.x, p.y, p.width, p.height); }
+            foreach (Projectile p in bolts) { e.Graphics.FillEllipse(new SolidBrush(p.colour), p.x, p.y, p.width, p.height); }
             foreach (Gunner x in enemies) { e.Graphics.FillEllipse(new SolidBrush(x.colour), x.x, x.y, x.size, x.size); }
             e.Graphics.FillRectangle(new SolidBrush(g.colour), g.x, g.y, g.size, g.size);
             e.Graphics.DrawString("Shots: " + shots, labelFont, new SolidBrush(Color.Black), this.Width - 100, 0);

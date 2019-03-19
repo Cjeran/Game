@@ -14,14 +14,24 @@ namespace Game
     {
         public EndScreen()
         {
+            InitializeComponent();
+
             killLabel.Text = "" + Form1.finalKills;
             scoreLabel.Text = "" + Form1.finalScore;
             timeLabel.Text = "" + Form1.finalTime;
-
-            InitializeComponent();
         }
 
         private void gameOverLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
         {
 
         }

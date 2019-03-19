@@ -35,6 +35,8 @@
             this.scoreLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timeLabel = new System.Windows.Forms.Label();
+            this.menuButton = new System.Windows.Forms.Button();
+            this.playAgain = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // gameOverLabel
@@ -81,6 +83,7 @@
             // 
             // scoreLabel
             // 
+            this.scoreLabel.Font = new System.Drawing.Font("Millenium BdEx BT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scoreLabel.Location = new System.Drawing.Point(295, 309);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(244, 72);
@@ -106,11 +109,37 @@
             this.timeLabel.TabIndex = 6;
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // menuButton
+            // 
+            this.menuButton.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.menuButton.Location = new System.Drawing.Point(573, 392);
+            this.menuButton.Name = "menuButton";
+            this.menuButton.Size = new System.Drawing.Size(164, 60);
+            this.menuButton.TabIndex = 7;
+            this.menuButton.Text = "Main Menu";
+            this.menuButton.UseVisualStyleBackColor = true;
+            this.menuButton.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // playAgain
+            // 
+            this.playAgain.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAgain.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.playAgain.Location = new System.Drawing.Point(63, 392);
+            this.playAgain.Name = "playAgain";
+            this.playAgain.Size = new System.Drawing.Size(164, 60);
+            this.playAgain.TabIndex = 8;
+            this.playAgain.Text = "Play Again";
+            this.playAgain.UseVisualStyleBackColor = true;
+            this.playAgain.Click += new System.EventHandler(this.button2_Click);
+            // 
             // EndScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
+            this.Controls.Add(this.playAgain);
+            this.Controls.Add(this.menuButton);
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.scoreLabel);
@@ -135,5 +164,7 @@
         private System.Windows.Forms.Label scoreLabel;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Button menuButton;
+        private System.Windows.Forms.Button playAgain;
     }
 }

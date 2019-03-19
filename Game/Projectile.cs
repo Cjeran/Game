@@ -33,20 +33,51 @@ namespace Game
         {
             if (initial == 1)
             {
-                x = randGen.Next(1, 797);
-               // y = 
+                x = randGen.Next(1, 795);
+                y = -20;
+                initialX = x;
+                initialY = y;
+                width = 5;
+                height = 20;
+                speed = 20;
+                colour = Color.Maroon;
+                direction = "down";
             }
             else if (initial == 2)
             {
-
+                x = randGen.Next(1, 795);
+                y = 500;
+                initialX = x;
+                initialY = y;
+                width = 5;
+                height = 20;
+                speed = 20;
+                colour = Color.Maroon;
+                direction = "up";
             }
             else if (initial == 3)
             {
-
+                x = 800;
+                y = randGen.Next(1, 495);
+                initialX = x;
+                initialY = y;
+                width = 20;
+                height = 5;
+                speed = 20;
+                colour = Color.Maroon;
+                direction = "left";
             }
             else if (initial == 4)
             {
-
+                x = -20;
+                y = randGen.Next(1, 495);
+                initialX = x;
+                initialY = y;
+                width = 20;
+                height = 5;
+                speed = 20;
+                colour = Color.Maroon;
+                direction = "right";
             }
         }
 
