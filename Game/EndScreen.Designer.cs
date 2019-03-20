@@ -37,6 +37,8 @@
             this.timeLabel = new System.Windows.Forms.Label();
             this.menuButton = new System.Windows.Forms.Button();
             this.playAgain = new System.Windows.Forms.Button();
+            this.highscoreLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameOverLabel
@@ -75,16 +77,16 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Millenium BdEx BT", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(370, 233);
+            this.label1.Location = new System.Drawing.Point(295, 136);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 62);
+            this.label1.Size = new System.Drawing.Size(255, 62);
             this.label1.TabIndex = 3;
-            this.label1.Text = "%";
+            this.label1.Text = "Score";
             // 
             // scoreLabel
             // 
             this.scoreLabel.Font = new System.Drawing.Font("Millenium BdEx BT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(295, 309);
+            this.scoreLabel.Location = new System.Drawing.Point(299, 198);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(244, 72);
             this.scoreLabel.TabIndex = 4;
@@ -113,7 +115,7 @@
             // 
             this.menuButton.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.menuButton.Location = new System.Drawing.Point(573, 392);
+            this.menuButton.Location = new System.Drawing.Point(620, 403);
             this.menuButton.Name = "menuButton";
             this.menuButton.Size = new System.Drawing.Size(164, 60);
             this.menuButton.TabIndex = 7;
@@ -125,7 +127,7 @@
             // 
             this.playAgain.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playAgain.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.playAgain.Location = new System.Drawing.Point(63, 392);
+            this.playAgain.Location = new System.Drawing.Point(19, 403);
             this.playAgain.Name = "playAgain";
             this.playAgain.Size = new System.Drawing.Size(164, 60);
             this.playAgain.TabIndex = 8;
@@ -133,11 +135,32 @@
             this.playAgain.UseVisualStyleBackColor = true;
             this.playAgain.Click += new System.EventHandler(this.button2_Click);
             // 
+            // highscoreLabel
+            // 
+            this.highscoreLabel.Font = new System.Drawing.Font("Millenium BdEx BT", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highscoreLabel.Location = new System.Drawing.Point(193, 343);
+            this.highscoreLabel.Name = "highscoreLabel";
+            this.highscoreLabel.Size = new System.Drawing.Size(445, 55);
+            this.highscoreLabel.TabIndex = 9;
+            this.highscoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Millenium BdEx BT", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(284, 280);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(280, 42);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Highscore";
+            // 
             // EndScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkRed;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.highscoreLabel);
             this.Controls.Add(this.playAgain);
             this.Controls.Add(this.menuButton);
             this.Controls.Add(this.timeLabel);
@@ -166,5 +189,7 @@
         private System.Windows.Forms.Label timeLabel;
         private System.Windows.Forms.Button menuButton;
         private System.Windows.Forms.Button playAgain;
+        private System.Windows.Forms.Label highscoreLabel;
+        private System.Windows.Forms.Label label4;
     }
 }

@@ -16,7 +16,7 @@ namespace Game
         new Random randGen = new Random();
         int shots, score, timer, difficulty, kills;
         Gunner g;
-        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, pKeyDown, oKeyDown, gameOver, hax;
+        Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, pKeyDown, oKeyDown, escKeyDown, gameOver, hax;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 16);
         List<Projectile> bullets = new List<Projectile>();
@@ -64,6 +64,9 @@ namespace Game
                     break;
                 case Keys.O:
                     oKeyDown = true;
+                    break;
+                case Keys.Escape:
+                    escKeyDown = true;
                     break;
             }
         }
@@ -123,6 +126,9 @@ namespace Game
                     break;
                 case Keys.O:
                     oKeyDown = false;
+                    break;
+                case Keys.Escape:
+                    escKeyDown = false;
                     break;
             }
         }
@@ -188,7 +194,7 @@ namespace Game
                 shots++;
             }
 
-            //Remove drop of bullets
+            //Remove drop off bullets
             for (int i = 0; i < bullets.Count; i++)
             {
                 bullets[i].Move();
@@ -248,6 +254,14 @@ namespace Game
                         break;
                     }
                 }
+                for (int x = 0; x < bolts.Count; x++)
+                {
+                    if (g.Shot(bolts[x]))
+                    {
+                        gameOver = true;
+                        break;
+                    }
+                }
             }
 
             //If gameOver is true, go to end screen.
@@ -274,6 +288,18 @@ namespace Game
 
             if (pKeyDown == true){hax = true;}
             if (oKeyDown == true){ hax = false;}
+
+            //If escape is clicked, go back to the startscreen
+            if (escKeyDown)
+            {
+                Form f = this.FindForm();
+                f.Controls.Remove(this);
+
+                StartScreen ss = new StartScreen();
+                f.Controls.Add(ss);
+
+                this.Dispose();
+            }
            
             Refresh();
         }

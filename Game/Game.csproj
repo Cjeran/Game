@@ -91,6 +91,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="StartScreen.resx">
       <DependentUpon>StartScreen.cs</DependentUpon>
@@ -107,6 +108,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redButton.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blueButton.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\greenButton.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\joyStick.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\redButton.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellowButton.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
