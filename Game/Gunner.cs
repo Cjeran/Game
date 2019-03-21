@@ -28,7 +28,7 @@ namespace Game
                 x = randGen.Next(1, 751);
                 y = -50;
                 size = 50;
-                speed = 5;
+                speed = 7;
                 colour = Color.Red;
             }
             else if (initial == 2)
@@ -36,7 +36,7 @@ namespace Game
                 x = 800;
                 y = randGen.Next(1, 451);
                 size = 50;
-                speed = 5;
+                speed = 7;
                 colour = Color.Red;
             }
             else if (initial == 3)
@@ -44,7 +44,7 @@ namespace Game
                 x = randGen.Next(1, 751);
                 y = 500;
                 size = 50;
-                speed = 5;
+                speed = 7;
                 colour = Color.Red;
             }
             else if (initial == 4)
@@ -52,7 +52,7 @@ namespace Game
                 x = -50;
                 y = randGen.Next(1, 451);
                 size = 50;
-                speed = 5;
+                speed = 7;
                 colour = Color.Red;
             }
         }

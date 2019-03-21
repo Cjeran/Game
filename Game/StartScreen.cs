@@ -39,12 +39,7 @@ namespace Game
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Form f = this.FindForm();
-            f.Controls.Remove(this);
-
-            GameScreen gs = new GameScreen();
-            f.Controls.Add(gs);
-            this.Dispose();
+            Form1.ChangeScreen(this, "GameScreen");
         }
 
         private void button2_Click(object sender, EventArgs e)

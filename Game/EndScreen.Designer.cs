@@ -113,7 +113,7 @@
             // 
             // menuButton
             // 
-            this.menuButton.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuButton.Font = new System.Drawing.Font("Millenium BdEx BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuButton.ForeColor = System.Drawing.SystemColors.ControlText;
             this.menuButton.Location = new System.Drawing.Point(620, 403);
             this.menuButton.Name = "menuButton";
@@ -125,7 +125,7 @@
             // 
             // playAgain
             // 
-            this.playAgain.Font = new System.Drawing.Font("Mongolian Baiti", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playAgain.Font = new System.Drawing.Font("Millenium BdEx BT", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playAgain.ForeColor = System.Drawing.SystemColors.ControlText;
             this.playAgain.Location = new System.Drawing.Point(19, 403);
             this.playAgain.Name = "playAgain";

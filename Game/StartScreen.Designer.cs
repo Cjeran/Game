@@ -37,11 +37,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -60,7 +68,7 @@
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Millenium BdEx BT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(312, 305);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(183, 46);
@@ -71,7 +79,7 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Mongolian Baiti", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Millenium BdEx BT", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.Location = new System.Drawing.Point(312, 357);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(183, 46);
@@ -117,6 +125,78 @@
             this.label5.Size = new System.Drawing.Size(8, 30);
             this.label5.TabIndex = 10;
             // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.Color.LightCyan;
+            this.label6.Location = new System.Drawing.Point(629, 226);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(30, 30);
+            this.label6.TabIndex = 11;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Millenium BdEx BT", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(591, 357);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(110, 27);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Firing";
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.LightCyan;
+            this.label8.Location = new System.Drawing.Point(50, 217);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(30, 30);
+            this.label8.TabIndex = 14;
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.LightCyan;
+            this.label9.Location = new System.Drawing.Point(136, 298);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 30);
+            this.label9.TabIndex = 15;
+            // 
+            // label10
+            // 
+            this.label10.BackColor = System.Drawing.Color.LightCyan;
+            this.label10.Location = new System.Drawing.Point(222, 217);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(30, 30);
+            this.label10.TabIndex = 16;
+            // 
+            // label11
+            // 
+            this.label11.BackColor = System.Drawing.Color.LightCyan;
+            this.label11.Location = new System.Drawing.Point(136, 134);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(30, 30);
+            this.label11.TabIndex = 17;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Millenium BdEx BT", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label12.Location = new System.Drawing.Point(66, 357);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(186, 27);
+            this.label12.TabIndex = 18;
+            this.label12.Text = "Movement";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = global::Game.Properties.Resources.joyStick;
+            this.pictureBox5.Location = new System.Drawing.Point(86, 167);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(130, 128);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBox5.TabIndex = 13;
+            this.pictureBox5.TabStop = false;
+            // 
             // pictureBox4
             // 
             this.pictureBox4.Image = global::Game.Properties.Resources.redButton;
@@ -156,19 +236,18 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.Color.LightCyan;
-            this.label6.Location = new System.Drawing.Point(629, 226);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 30);
-            this.label6.TabIndex = 11;
-            // 
             // StartScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Highlight;
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -185,6 +264,7 @@
             this.Size = new System.Drawing.Size(800, 500);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.StartScreen_KeyUp);
             this.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.StartScreen_PreviewKeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -209,5 +289,12 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

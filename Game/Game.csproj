@@ -127,5 +127,11 @@
   <ItemGroup>
     <None Include="Resources\yellowButton.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gunSound.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gunSound.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Game
 {
     public partial class GameScreen : UserControl
@@ -19,6 +20,7 @@ namespace Game
         Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, pKeyDown, oKeyDown, escKeyDown, gameOver, hax;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 16);
+        System.Media.SoundPlayer soundPlayer;
         List<Projectile> bullets = new List<Projectile>();
         List<Projectile> bolts = new List<Projectile>();
         List<Gunner> enemies = new List<Gunner>();
@@ -137,11 +139,12 @@ namespace Game
         {
             Gunner e = new Gunner(randGen.Next(1, 5));
             enemies.Add(e);
-            g = new Gunner(this.Width / 2 - 10, this.Height / 2 - 10, 20, 7, Color.LightCyan);
+            g = new Gunner(this.Width / 2 - 10, this.Height / 2 - 10, 20, 10, Color.LightCyan);
             Gunner x = new Gunner(0, 0, 0, 0, Color.Red);
             enemies.Add(x);
             Projectile p = new Projectile(-10, -10, 10, 10, 0, Color.Azure, "down");
             bolts.Add(p);
+            soundPlayer = new System.Media.SoundPlayer(Properties.Resources.gunSound);
             timer = 0;
             difficulty = 25;
             gameTime.Start();
@@ -165,12 +168,15 @@ namespace Game
             if (downKeyDown == true && g.y < this.Height - g.size) { g.Move("down"); }
 
             //Create and move projectiles with directional input, as well as remove drop off bullets
+            //Count the amount of shots the player has taken
+            //Play the gunshot sound
             if (spaceKeyDown == true && loaded == true)
             {
                 Projectile p = new Projectile(g.x + g.size / 2 - 2, g.y, 4, 10, 20, Color.Silver, "down");
                 bullets.Add(p);
                 loaded = false;
                 shots++;
+                soundPlayer.Play();
             }
             else if (bKeyDown == true && loaded == true)
             {
@@ -178,6 +184,7 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
+                soundPlayer.Play();
             }
             else if (nKeyDown == true && loaded == true)
             {
@@ -185,6 +192,7 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
+                soundPlayer.Play();
             }
             else if (mKeyDown == true && loaded == true)
             {
@@ -192,16 +200,17 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
+                soundPlayer.Play();
             }
 
             //Remove drop off bullets
             for (int i = 0; i < bullets.Count; i++)
             {
                 bullets[i].Move();
-                if (bullets[i].y < bullets[i].initialY - 100 
-                    || bullets[i].y > bullets[i].initialY + 100 
-                    || bullets[i].x > bullets[i].initialX + 100 
-                    || bullets[i].x < bullets[i].initialX - 100)
+                if (bullets[i].y < bullets[i].initialY - 200 
+                    || bullets[i].y > bullets[i].initialY + 200 
+                    || bullets[i].x > bullets[i].initialX + 200 
+                    || bullets[i].x < bullets[i].initialX - 200)
                 {
                     bullets.Remove(bullets[i]);
                 }
@@ -211,10 +220,10 @@ namespace Game
             for (int i = 0; i < bolts.Count; i++)
             {
                 bolts[i].Move();
-                if (bolts[i].y < bolts[i].initialY - 550
-                    || bolts[i].y > bolts[i].initialY + 550
-                    || bolts[i].x > bolts[i].initialX + 850
-                    || bolts[i].x < bolts[i].initialX - 850)
+                if (bolts[i].y < bolts[i].initialY - this.Height
+                    || bolts[i].y > bolts[i].initialY + this.Height
+                    || bolts[i].x > bolts[i].initialX + this.Width
+                    || bolts[i].x < bolts[i].initialX - this.Width)
                 {
                     bolts.Remove(bolts[i]);
                 }
@@ -228,16 +237,13 @@ namespace Game
             {
                 Gunner x = new Gunner(randGen.Next(1, 5));
                 enemies.Add(x);
-                Projectile a = new Projectile(randGen.Next(1, 5));
+            }
+
+            //Shoot at the player
+            if (timer % 5 == 0)
+            {
+                Projectile a = new Projectile(randGen.Next(1, 5), g);
                 bolts.Add(a);
-                Projectile b = new Projectile(randGen.Next(1, 5));
-                bolts.Add(b);
-                Projectile c = new Projectile(randGen.Next(1, 5));
-                bolts.Add(c);
-                Projectile d = new Projectile(randGen.Next(1, 5));
-                bolts.Add(d);
-                Projectile p = new Projectile(randGen.Next(1, 5));
-                bolts.Add(p);
             }
 
             //Remove Shot Enemies
@@ -271,13 +277,7 @@ namespace Game
                 Form1.finalScore = kills * 75 + score * 5;
                 Form1.finalTime = score;
 
-                Form f = this.FindForm();
-                f.Controls.Remove(this);
-
-                EndScreen es = new EndScreen();
-                f.Controls.Add(es);
-
-                this.Dispose();
+                Form1.ChangeScreen(this, "EndScreen");
             }
 
             //Add 5 to score every tick for surviving
@@ -292,13 +292,7 @@ namespace Game
             //If escape is clicked, go back to the startscreen
             if (escKeyDown)
             {
-                Form f = this.FindForm();
-                f.Controls.Remove(this);
-
-                StartScreen ss = new StartScreen();
-                f.Controls.Add(ss);
-
-                this.Dispose();
+                Form1.ChangeScreen(this, "StartScreen");
             }
            
             Refresh();

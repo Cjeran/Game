@@ -29,11 +29,11 @@ namespace Game
             r = new Rectangle(x, y, width, height);
         }
 
-        public Projectile(int initial)
+        public Projectile(int initial, Gunner g)
         {
             if (initial == 1)
             {
-                x = randGen.Next(1, 795);
+                x = g.x + g.size / 2;
                 y = -20;
                 initialX = x;
                 initialY = y;
@@ -45,7 +45,7 @@ namespace Game
             }
             else if (initial == 2)
             {
-                x = randGen.Next(1, 795);
+                x = g.x + g.size / 2 ;
                 y = 500;
                 initialX = x;
                 initialY = y;
@@ -58,7 +58,7 @@ namespace Game
             else if (initial == 3)
             {
                 x = 800;
-                y = randGen.Next(1, 495);
+                y = g.y + g.size / 2;
                 initialX = x;
                 initialY = y;
                 width = 20;
@@ -70,7 +70,7 @@ namespace Game
             else if (initial == 4)
             {
                 x = -20;
-                y = randGen.Next(1, 495);
+                y = g.y + g.size / 2;
                 initialX = x;
                 initialY = y;
                 width = 20;
