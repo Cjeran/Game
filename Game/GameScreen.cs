@@ -20,7 +20,9 @@ namespace Game
         Boolean leftKeyDown, rightKeyDown, upKeyDown, downKeyDown, spaceKeyDown, bKeyDown, nKeyDown, mKeyDown, pKeyDown, oKeyDown, escKeyDown, gameOver, hax;
         Boolean loaded = true;
         Font labelFont = new Font("Mongolian Baiti", 16);
-        System.Media.SoundPlayer soundPlayer;
+        System.Media.SoundPlayer gunSound;
+        System.Media.SoundPlayer hitSound;
+        System.Media.SoundPlayer deathSound;
         List<Projectile> bullets = new List<Projectile>();
         List<Projectile> bolts = new List<Projectile>();
         List<Gunner> enemies = new List<Gunner>();
@@ -28,8 +30,13 @@ namespace Game
         public GameScreen()
         {
             InitializeComponent();
+            //Double Buffer the Screen (Honestly Don't know what this does)
             DoubleBuffered = true;
+
+            //Make sure the game is not over at the start of the game
             gameOver = false;
+
+            //Call OnStart Method
             OnStart();
         }
 
@@ -137,14 +144,22 @@ namespace Game
 
         public void OnStart()
         {
-            Gunner e = new Gunner(randGen.Next(1, 5));
-            enemies.Add(e);
+            //Create the main Gunner
             g = new Gunner(this.Width / 2 - 10, this.Height / 2 - 10, 20, 10, Color.LightCyan);
+
+            //Create Initial enemy (always stays top left to avoid empty list)
             Gunner x = new Gunner(0, 0, 0, 0, Color.Red);
             enemies.Add(x);
+
+            //Create initial projectile (Same as above)
             Projectile p = new Projectile(-10, -10, 10, 10, 0, Color.Azure, "down");
             bolts.Add(p);
-            soundPlayer = new System.Media.SoundPlayer(Properties.Resources.gunSound);
+
+            //Gunshot
+            gunSound = new System.Media.SoundPlayer(Properties.Resources.gun);
+            hitSound = new System.Media.SoundPlayer(Properties.Resources.hit);
+            deathSound = new System.Media.SoundPlayer(Properties.Resources.death);
+
             timer = 0;
             difficulty = 25;
             gameTime.Start();
@@ -176,7 +191,7 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
-                soundPlayer.Play();
+                gunSound.Play();
             }
             else if (bKeyDown == true && loaded == true)
             {
@@ -184,7 +199,7 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
-                soundPlayer.Play();
+                gunSound.Play();
             }
             else if (nKeyDown == true && loaded == true)
             {
@@ -192,7 +207,7 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
-                soundPlayer.Play();
+                gunSound.Play();
             }
             else if (mKeyDown == true && loaded == true)
             {
@@ -200,17 +215,17 @@ namespace Game
                 bullets.Add(p);
                 loaded = false;
                 shots++;
-                soundPlayer.Play();
+                gunSound.Play();
             }
 
             //Remove drop off bullets
             for (int i = 0; i < bullets.Count; i++)
             {
                 bullets[i].Move();
-                if (bullets[i].y < bullets[i].initialY - 200 
-                    || bullets[i].y > bullets[i].initialY + 200 
-                    || bullets[i].x > bullets[i].initialX + 200 
-                    || bullets[i].x < bullets[i].initialX - 200)
+                if (bullets[i].y < bullets[i].initialY - 150 
+                    || bullets[i].y > bullets[i].initialY + 150 
+                    || bullets[i].x > bullets[i].initialX + 150 
+                    || bullets[i].x < bullets[i].initialX - 150)
                 {
                     bullets.Remove(bullets[i]);
                 }
@@ -277,6 +292,8 @@ namespace Game
                 Form1.finalScore = kills * 75 + score * 5;
                 Form1.finalTime = score;
 
+                deathSound.Play();
+
                 Form1.ChangeScreen(this, "EndScreen");
             }
 
@@ -313,6 +330,7 @@ namespace Game
 
         public void Collision()
         {
+            //This method checks the collision of all player shot bullets against all enemies that have been created.
             for (int p = 0; p < bullets.Count; p++)
             {
                 for (int x = 0; x < enemies.Count; x++)
@@ -321,6 +339,7 @@ namespace Game
                     {
                         bullets.Remove(bullets[p]);
                         enemies.Remove(enemies[x]);
+                        hitSound.Play();
                         kills += 1;
                         break;
                     }

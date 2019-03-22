@@ -23,6 +23,7 @@ namespace Game
             StartScreen ns = new StartScreen();
             ns.Location = new Point((this.Width - ns.Width) / 2, (this.Height - ns.Height) / 2);
             this.Controls.Add(ns);
+            Cursor.Hide();
             ns.Focus();
         }
 
@@ -58,9 +59,11 @@ namespace Game
             }
 
             ns.Location = new Point((f.Width - ns.Width) / 2, (f.Height - ns.Height) / 2);
-
+            Cursor.Hide();
             f.Controls.Add(ns);
             ns.Focus();
+
+            current.Dispose();
 
         }
     }
